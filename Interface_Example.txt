@@ -1,0 +1,43 @@
+
+public interface InterfaceExample {
+     int method1();//defaultly inherit public abstract
+     public abstract void method2();
+     default String method3() {
+    	 System.out.println("It is be overridden");
+    	 return "";
+     }
+     static Integer method4() {
+    	 System.out.println("Method Hiding can be implemented by upcasting");
+    	 return 4;
+     }
+     
+}
+class Extension1 implements InterfaceExample{
+@Override
+	public int method1() {
+		System.out.print("Method1 Overridden by Subclass");
+		return 1;
+	}
+@Override
+	public void method2() {
+		System.out.println("This overrides method 2");
+	}
+   static Integer method4() {
+	   System.out.print("In Extension1");
+	   return 5;
+   }
+}
+class Extension2 extends Extension1{
+	public int method1() {
+		System.out.println("value from Extension2");
+		return 1;
+	}
+	public static void main(String []args) {
+		InterfaceExample upcasting1=new Extension1();
+		Extension1 upcasted_obj=new Extension2();
+		Extension2 obj=new Extension2();
+		System.out.println(String.valueOf(upcasted_obj.method1()));
+		System.out.println(obj.method1());
+		System.out.println(String.valueOf(upcasting1.method1())+"Upcasting Done");
+	}
+}
